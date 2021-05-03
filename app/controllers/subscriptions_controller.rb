@@ -8,6 +8,9 @@ class SubscriptionsController < ApplicationController
     def create
         current_user.update_card(params[:payment_method_id]) if params[:payment_method_id].present?
         current_user.subscript(@plan.stripe_id)
+        redirect_to root_path, notice: "Thanks for subscribing"
+    rescue PaymentIncomplete => e
+        redirect_to payment_path(e.payment_intent.id)
     end
 
     private
