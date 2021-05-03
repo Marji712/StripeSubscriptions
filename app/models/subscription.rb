@@ -16,4 +16,8 @@ class Subscription < ApplicationRecord
   def on_trial?
     trial_ends_at? && Time.zone.now < trial_ends_at
   end
+
+  def has_incomplete_payment?
+    ["past_due", "incomplete"].include?(status)
+  end
 end
