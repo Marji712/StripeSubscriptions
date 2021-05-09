@@ -51,7 +51,7 @@ function setupStripe() {
       stripe.confirmCardPayment(paymentIntentId, { setup_future_usage: 'off_session' }).then((result) => {
         if(result.error) {
           displayError.textContent = result.error.message
-          form.querySelector("#card-detials").classList.remove("d-none")
+          form.querySelector("#card-details").classList.remove("d-none")
         } else {
           form.submit()
         }
@@ -80,7 +80,7 @@ function setupStripe() {
       }).then((result) => {
         if(result.error) {
           displayError.textContent = result.error.message
-          form.querySelector("#card-detials").classList.remove("d-none")
+          form.querySelector("#card-details").classList.remove("d-none")
         } else {
           form.submit()
         }
