@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_person_name
 
   has_many :notifications, foreign_key: :recipient_id
-  # has_many :notifications, as: :recipient
   has_many :services
   has_many :subscriptions
   has_many :charges
