@@ -10,8 +10,8 @@
   <h1>Confirm your <%= formatted_amount @payment_intent.amount %> payment</h1>
   <p>Extra confirmation is needed to process your payment.</p>
 
-  <%= form_with url: payment_path(payment_intent.id), method: :patch, local: true, id: "payment-form", data: {payment_intent: @payment_intent.client_secret, status: @payment_intent.status } do |form| %>
-    <%= tag.div id: "card-detials", class:("d-none" if payment_intent.status == "requires_action") do %>
+  <%= form_with url: payment_path(@payment_intent.id), method: :patch, local: true, id: "payment-form", data: {payment_intent: @payment_intent.client_secret, status: @payment_intent.status } do |form| %>
+    <%= tag.div id: "card-details", class:("d-none" if @payment_intent.status == "requires_action") do %>
       <div class="form-group">
         <label>Credit or debit card</label>
         <div id="card-element" class="form-control"></div>
