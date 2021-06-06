@@ -23,6 +23,15 @@ document.addEventListener("turbolinks:load", () => {
   let cardElement = document.querySelector("#card-element")
 
   if (cardElement !== null) { setupStripe() }
+
+  let newCard = document.querySelector("#use-new-card")
+  if(newCard !== null) { 
+    newCard.addEventListener("click", (event) => {
+      event.preventDefault()
+      document.querySelector("#payment-form").classList.remove("d-none")
+      document.querySelector("#existing-card").classList.add("d-none")
+    })
+  }
 })
 
 function setupStripe() {
