@@ -28,13 +28,13 @@ class Subscription < ApplicationRecord
 
   def cancel_now!
     sub = Stripe::Subscription.delete(stripe_id)
-    update(status: 'canceled', ends_at: Time.at(sub.ended_at))
+    update(status: "canceled", ends_at: Time.at(sub.ended_at))
   end
 
   def resume
     if Time.current < ends_at
       Stripe::Subscription.update(stripe_id, cancel_at_period_end: false)
-      update(status: 'active', ends_at: nil)
+      update(status: "active", ends_at: nil)
     else
       raise StandardError, "You cannot resume a subscription that has already been canceled."
     end
