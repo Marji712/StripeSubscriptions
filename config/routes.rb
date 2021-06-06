@@ -17,9 +17,13 @@ end
   resources :announcements, only: [:index]
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   
+  resource :card
   resource :pricing, controller: :pricing
-  resource :subscription
+  resource :subscription do
+    patch :resume
+  end
   resources :payments
+  resources :charges
   
   root to: 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
